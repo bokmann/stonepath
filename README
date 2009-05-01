@@ -1,0 +1,9 @@
+This is a Stateful Workflow gem that is currently being pulled out of a 
+real-world client project.  I'm creating the repository before RailsConf 2009
+so interested people that attend my talk can watch and contribute.
+
+I'm also asking you to keep me honest - this extraction is real, but is likely
+to take a back seat to real billable client time.  If I know there is interest
+(that is, if I see followers and if they nag me), this project is likely to get
+time over others.
+

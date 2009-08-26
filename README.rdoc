@@ -30,24 +30,6 @@ time over others.
 
 
 
-== DESCRIPTION:
-
-FIX (describe your package)
-
-== FEATURES/PROBLEMS:
-
-* FIX (list of features or problems)
-
-== SYNOPSIS:
-
-  FIX (code sample of usage)
-
-== REQUIREMENTS:
-
-* FIX (list of requirements)
-
-== INSTALL:
-
 gem install bokmann-stonepath
 
 == LICENSE:

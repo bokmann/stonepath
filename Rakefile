@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rcov/rcovtask'
+require 'shoulda/tasks'
 
 begin
   require 'jeweler'
@@ -23,7 +24,7 @@ end
 
 Rake::TestTask.new do |t|
   t.libs << 'lib'
-  t.pattern = 'test/**/test*.rb'
+  t.pattern = 'test/**/*_test.rb'
   t.verbose = false
 end
  
@@ -33,7 +34,7 @@ Rcov::RcovTask.new do |t|
   #t.test_files = FileList['./test/**/test*.rb']
   #t.verbose = true
 
-  t.test_files = FileList['test/**/test*.rb']
+  t.test_files = FileList['test/**/*_test.rb']
   t.verbose = true
   #t.rcov_opts << "--no-color"
   #t.rcov_opts << "--save coverage.info"

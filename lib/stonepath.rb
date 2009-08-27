@@ -2,7 +2,6 @@ $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
 module StonePath
-  
   # main hook into the framework.  From here, this should simply have methods that cause other includes to happen.
   def self.included(base)
   
@@ -42,6 +41,7 @@ module StonePath
   
 end
 
+require 'rubygems'
 require 'activerecord'
 
 load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/activerecordbase.rb"

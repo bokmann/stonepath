@@ -1,6 +1,7 @@
 # Set the default environment to sqlite3's in_memory database
 ENV['RAILS_ENV'] ||= 'in_memory'
 
+require 'rubygems'
 require 'stringio'
 require 'test/unit'
 require 'flexmock/test_unit'

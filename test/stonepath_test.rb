@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestStonepath < Test::Unit::TestCase
+class StonepathTest < Test::Unit::TestCase
 
   def setup
   end

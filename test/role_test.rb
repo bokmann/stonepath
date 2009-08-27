@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 
 
   
-class TestRole < Test::Unit::TestCase
+class RoleTest < Test::Unit::TestCase
 
   def setup
   end

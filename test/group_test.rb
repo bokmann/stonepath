@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/test_helper.rb'
 
 
   
-class TestGroup < Test::Unit::TestCase
+class GroupTest < Test::Unit::TestCase
 
   def setup
   end

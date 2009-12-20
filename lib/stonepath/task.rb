@@ -1,6 +1,16 @@
+# A Task in this framework is simply a relation between a workitem and a workbench.  It has
+# some default workflow, and should be extended with whatever attributes make sense for the
+# business domain you are modeling.
+
 module StonePath
   module SPTask
     
+    # This will move from here shortly, into another class/module for containing things like this.
+    # This is the workflow definition for a default task.  This is defined this way so that users
+    # can provide their own task workflow definition as a block to the stonepath_task declaration.
+    # This lanbda is passed in if the user doesn't provide anything.
+    # It is possible that we will identify other useful options and want to provide them as config
+    # blocks in the StonePath gem.
     def self.default_config_block
       lambda {
         aasm_initial_state :active
@@ -31,11 +41,18 @@ module StonePath
       }
     end
     
+    
     def self.included(base)
       base.instance_eval do
       
+        # especially now that this is polymorphic, why not just call this workbench?
+        # it would make everything a lot simpler if tasks were always assigned to
+        # a workbench...
         belongs_to :assignee, :polymorphic => true
         
+        # Does using class_name here preclude this being polymorphic if the user wanted
+        # to do so?  I like the documentation of saying things like "task_for :case",
+        # but if I default this to a polymorphic association, that would never be necessary.
         def task_for(workitem, options={})
           options.merge!(:class_name => workitem.to_s.classify)
           belongs_to :workitem, options

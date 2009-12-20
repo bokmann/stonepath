@@ -1,3 +1,7 @@
+# The WorkItem is the center of this framework.  It is the thing that has a workflow,
+# is the subject of ownership and tasks.  Tis is the place the primaey state machine will
+# exist
+
 module StonePath
   module WorkItem
     def self.included(base)
@@ -9,15 +13,14 @@ module StonePath
           belongs_to :owner, options
         end
         
+        # I think this should be renamed 'tasked through', especially if tasks
+        # are modified to always have a polymorphic relationship.
         def subject_of(tasks, options={})
           has_many tasks, options
         end
         
         def stonepath_acl()
           require File.expand_path(File.dirname(__FILE__)) + "/acl.rb"
-          #require File.expand_path(File.dirname(__FILE__)) + "/acl/acl.rb"
-          #require File.expand_path(File.dirname(__FILE__)) + "/acl/acl_role.rb"
-          #require File.expand_path(File.dirname(__FILE__)) + "/acl/acl_state.rb"
           cattr_accessor :acl
           self.acl = StonePath::ACL::Controller.new(self)
           yield self.acl
@@ -31,9 +34,8 @@ module StonePath
         class << self
           alias_method "define_attribute_methods_without_hook", "define_attribute_methods"
           alias_method "define_attribute_methods", "define_attribute_methods_with_hook"
-          
         end    
-      end
+      end #base.instance_eval
 
       def allowed?(method)
         acl.allowed?(aasm_current_state, current_user, method)
@@ -57,17 +59,7 @@ module StonePath
         alias_method_chain :to_xml, :events      
       end
       
-    end
+    end #self.included
+    
   end
-  
 end
-
-
-# if table_exists? <workitem>_transition_log_entries
-#define  WorkItem::TransitionLogEntry
-# then for each transition method, have an after proc that
-# creates workitem_transition_log
-# workitem_id
-# transitioned_to
-# transitioned_by
-# transitioned_at

@@ -12,7 +12,7 @@ module StonePath
         include StonePath::WorkItem
       end
     
-      def stonepath_task
+      def stonepath_task(&config_block)
         require File.expand_path(File.dirname(__FILE__)) + "/stonepath/task.rb"
         include StonePath::SPTask
       end
@@ -42,7 +42,7 @@ module StonePath
 end
 
 require 'rubygems'
-require 'activerecord'
+require 'active_record'
 
 load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/activerecordbase.rb"
 require "stonepath/config"

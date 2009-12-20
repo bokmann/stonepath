@@ -1,6 +1,9 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  
+  config.gem "aasm"
+    
   config.cache_classes = false
   config.whiny_nils = true
   config.action_controller.session = { :key => "_myapp_session", :secret => "gwirofjweroijger8924rt2zfwehfuiwehb1378rifowenfoqwphf23" }

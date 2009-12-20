@@ -4,12 +4,13 @@ module StonePath
       base.instance_eval do
         include AASM
         
-        def owned_by(owner)
-          belongs_to :owner, :class_name => owner.to_s.classify
+        def owned_by(owner, options={})
+          options.merge!(:class_name => owner.to_s.classify)
+          belongs_to :owner, options
         end
         
-        def subject_of(tasks)
-          has_many tasks
+        def subject_of(tasks, options={})
+          has_many tasks, options
         end
         
         def stonepath_acl()
@@ -24,7 +25,7 @@ module StonePath
         
         def self.define_attribute_methods_with_hook
           define_attribute_methods_without_hook
-          acl.fix_aliases
+          acl.fix_aliases if defined? self.acl
         end
         
         class << self

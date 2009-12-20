@@ -24,7 +24,7 @@ module StonePath
         unchecked_method = unchecked_method_name(method)
 
         guarded_class.send(:define_method, checked_method) do |*args|
-          if acl.allowed?(aasm_current_state, current_user, method)
+          if acl.allowed?(self, current_user, method)
             self.send(unchecked_method, *args)
           elsif StonePath::Config.acl_failure_mode == :exception
             raise "Access Violation"
@@ -53,9 +53,11 @@ module StonePath
         yield @states[state_name]
       end
 
-      def allowed?(state, user, method)
-        puts "allowed called: #{state}, #{user}, #{method}"
-        return true
+      def allowed?(guarded_object, user, method)
+        return true if (guarded_object.nil? || user.nil? || method.nil?)
+        state = guarded_object.aasm_state
+        roles = user.respond_to?(:roles) ? user.roles : [user.role]
+        roles.each { |role| break [true] if states[state].roles[role].allowed?(guarded_object, method) }.uniq[0]
       end
 
       private

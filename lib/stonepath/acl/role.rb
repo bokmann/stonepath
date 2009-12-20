@@ -15,6 +15,17 @@ module StonePath
         @checked_methods = Hash.new
       end
 
+      def allowed?(guarded_object, method_name)
+        #first, we check to see if it is a checked method.  If it is, we return whatever the check method says
+        guard = checked_methods[method_name.to_s]
+        
+        return guard.call(guarded_object) if guard
+        
+        default_answer = !(Config.acl_default_access == :deny)
+        checklist = default_answer ? denied_methods : allowed_methods
+        checklist.include?(method_name.to_s) ? !default_answer : default_answer
+      end
+      
       def parent_acl
         @parent_state.parent_acl
       end

@@ -11,7 +11,7 @@ begin
     gemspec.description = "Stonepath: stateful workflow modeling for rails"
     gemspec.email = "dbock@codesherpas.com"
     gemspec.homepage = "http://github.com/bokmann/stonepath"
-    gemspec.description = "TODO"
+    gemspec.description = "Stateful workflow modeling for Rails"
     gemspec.authors = ["David Bock"]
     gemspec.add_dependency('activerecord','>= 2.0.0')
   end

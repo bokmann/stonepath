@@ -38,6 +38,12 @@ class TaskTest < Test::Unit::TestCase
     assert_equal("expired", a.aasm_state)
   end
   
+  should "be overdue? if due_at is in the past" do
+     c = Case.create
+     a = c.assignments.create(:due_at => 1.week.ago)
+     assert(a.overdue?)
+   end
+   
   should "be able to set up the relationship between a case and an assignment" do
     c = Case.create
     a = c.assignments.create

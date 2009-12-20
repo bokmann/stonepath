@@ -8,6 +8,7 @@ class CreateAssignments < ActiveRecord::Migration
       t.integer :workbench_id
       t.string :workbench_type
       t.datetime :completed_at
+      t.datetime :due_at
       t.timestamps
     end
   end

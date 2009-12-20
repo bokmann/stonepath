@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stonepath}
-  s.version = "0.0.2"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Bock"]
-  s.date = %q{2009-12-19}
+  s.date = %q{2009-12-20}
   s.description = %q{Stateful workflow modeling for Rails}
   s.email = %q{dbock@codesherpas.com}
   s.extra_rdoc_files = [
@@ -46,6 +46,7 @@ Gem::Specification.new do |s|
      "test/app_root/app/controllers/application_controller.rb",
      "test/app_root/app/models/assignment.rb",
      "test/app_root/app/models/case.rb",
+     "test/app_root/app/models/custom_assignment.rb",
      "test/app_root/app/models/user.rb",
      "test/app_root/config/boot.rb",
      "test/app_root/config/database.yml",
@@ -62,10 +63,12 @@ Gem::Specification.new do |s|
      "test/app_root/lib/console_with_fixtures.rb",
      "test/app_root/log/.gitignore",
      "test/app_root/script/console",
+     "test/custom_task_test.rb",
      "test/fixtures/users.yml",
      "test/group_test.rb",
      "test/role_test.rb",
      "test/stonepath_test.rb",
+     "test/task_test.rb",
      "test/test_helper.rb",
      "test/workitem_test.rb",
      "test/workowner_test.rb"
@@ -80,6 +83,7 @@ Gem::Specification.new do |s|
      "test/app_root/app/controllers/application_controller.rb",
      "test/app_root/app/models/assignment.rb",
      "test/app_root/app/models/case.rb",
+     "test/app_root/app/models/custom_assignment.rb",
      "test/app_root/app/models/user.rb",
      "test/app_root/config/boot.rb",
      "test/app_root/config/environment.rb",
@@ -93,9 +97,11 @@ Gem::Specification.new do |s|
      "test/app_root/db/migrate/02_create_assignments.rb",
      "test/app_root/db/migrate/03_create_cases.rb",
      "test/app_root/lib/console_with_fixtures.rb",
+     "test/custom_task_test.rb",
      "test/group_test.rb",
      "test/role_test.rb",
      "test/stonepath_test.rb",
+     "test/task_test.rb",
      "test/test_helper.rb",
      "test/workitem_test.rb",
      "test/workowner_test.rb"

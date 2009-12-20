@@ -31,15 +31,35 @@ module StonePath
         class << self
           alias_method "define_attribute_methods_without_hook", "define_attribute_methods"
           alias_method "define_attribute_methods", "define_attribute_methods_with_hook"
-        end
+          
+        end    
       end
-      
+
       def allowed?(method)
         acl.allowed?(aasm_current_state, current_user, method)
       end
       
+      # modifies to_xml do that it includes all the possible events from this state.
+      # useful when you are using WorkItems as resources with ActiveResource
+      def to_xml_with_events
+        to_xml_without_events do |xml|
+          xml.aasm_events_for_current_state(:type=>"array") do
+            aasm_events_for_current_state.each do |e|
+              xml.aasm_event do
+                xml.name e.to_s
+              end
+            end
+          end
+        end
+      end
+      
+      base.instance_eval do
+        alias_method_chain :to_xml, :events      
+      end
+      
     end
   end
+  
 end
 
 

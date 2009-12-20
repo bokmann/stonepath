@@ -17,6 +17,5 @@ class CustomAssignment < ActiveRecord::Base
     end
   end
   
-  task_for :case
   
 end

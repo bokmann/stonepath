@@ -18,7 +18,7 @@ class Case < ActiveRecord::Base
   end
   
   owned_by :user
-  subject_of :assignments
+  tasked_through :assignments
   
   
   

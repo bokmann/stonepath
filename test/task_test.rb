@@ -38,6 +38,21 @@ class TaskTest < Test::Unit::TestCase
     assert_equal("expired", a.aasm_state)
   end
   
+  should "be able to set up the relationship between a case and an assignment" do
+    c = Case.create
+    a = c.assignments.create
+    assert_equal(a, c.assignments[0])
+    assert_equal(c, c.assignments[0].workitem)
+  end
+  
+  should "be able to set up the relationship between a user (as a workbench) and an assignment" do
+    u = User.create
+    c = Case.create
+    a = c.assignments.create(:workbench => u)
+    
+    assert_equal(a, u.assignments[0])
+    assert_equal(u, a.workbench)
+  end
 end
 
 

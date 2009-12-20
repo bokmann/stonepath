@@ -13,10 +13,13 @@ module StonePath
           belongs_to :owner, options
         end
         
-        # I think this should be renamed 'tasked through', especially if tasks
-        # are modified to always have a polymorphic relationship.
+        # DEPRECATED: used tasked_through instead
         def subject_of(tasks, options={})
           has_many tasks, options
+        end
+        
+        def tasked_through(tasks, options={})
+          has_many tasks, :as => :workitem
         end
         
         def stonepath_acl()

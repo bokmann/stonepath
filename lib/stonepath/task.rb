@@ -45,19 +45,16 @@ module StonePath
     def self.included(base)
       base.instance_eval do
       
-        # especially now that this is polymorphic, why not just call this workbench?
-        # it would make everything a lot simpler if tasks were always assigned to
-        # a workbench...
-        belongs_to :assignee, :polymorphic => true
+        # Tasks are now completely polymorphic between workbenches.
+        # as long as an activerecord model declares itself as a workbench and declares itself
+        # a workbench for the specific kind of task, everything just works.
+        belongs_to :workbench, :polymorphic => true
         
-        # Does using class_name here preclude this being polymorphic if the user wanted
-        # to do so?  I like the documentation of saying things like "task_for :case",
-        # but if I default this to a polymorphic association, that would never be necessary.
-        def task_for(workitem, options={})
-          options.merge!(:class_name => workitem.to_s.classify)
-          belongs_to :workitem, options
-        end
-      
+        # Tasks are now completely polymorphic between workitems.
+        # as long as an activerecord model declares itself as a workitem and declares itself
+        # a workitem for the specific kind of task, everything just works.
+        belongs_to :workitem, :polymorphic => true
+        
         def audits_transitions
           puts "#{self.class} audits transitions"
         end
@@ -85,7 +82,7 @@ module StonePath
     end
     
     def notify_closed
-     if workitem.respond_to?(:task_closed)
+      if workitem.respond_to?(:task_closed)
         workitem.task_closed(self)
       end
     end

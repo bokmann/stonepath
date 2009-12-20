@@ -5,7 +5,7 @@ module StonePath
         def workbench_for(tasks, options={})
           #options.merge!(:foreign_key => :assignee_id)
           #puts options
-          has_many tasks, :as => :assignee
+          has_many tasks, :as => :workbench
         end
       end
     end

@@ -3,7 +3,10 @@ class CreateAssignments < ActiveRecord::Migration
   def self.up
     create_table :assignments do |t|
       t.string :aasm_state
-      t.integer :case_id
+      t.integer :workitem_id
+      t.string :workitem_type
+      t.integer :workbench_id
+      t.string :workbench_type
       t.datetime :completed_at
       t.timestamps
     end

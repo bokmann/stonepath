@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
   
   stonepath_task
   
-  task_for :case
+  #task_for :case
   
   audits_transitions
   

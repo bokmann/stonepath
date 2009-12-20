@@ -1,21 +1,8 @@
 module StonePath
   module SPTask
-    def self.included(base)
-      base.instance_eval do
-      
-        belongs_to :assignee, :polymorphic => true
-        
-        def task_for(workitem, options={})
-          options.merge!(:class_name => workitem.to_s.classify)
-          belongs_to :workitem, options
-        end
-      
-        def audits_transitions
-          puts "#{self.class} audits transitions"
-        end
-                
-        include AASM
-
+    
+    def self.default_config_block
+      lambda {
         aasm_initial_state :active
         aasm_state :active, :after_enter => :notify_created
         aasm_state :completed, :before_enter => :timestamp_complete, :after_enter => :notify_closed
@@ -41,7 +28,24 @@ module StonePath
         named_scope :expired, { :conditions => ['aasm_state in (?)', ['expired']] }
         named_scope :cancelled, { :conditions => ['aasm_state in (?)', ['cancelled']] }
         named_scope :overdue, lambda { { :conditions => ['aasm_state in (?) AND due_at < ?',  ['active'], Time.now] } }
+      }
+    end
+    
+    def self.included(base)
+      base.instance_eval do
+      
+        belongs_to :assignee, :polymorphic => true
         
+        def task_for(workitem, options={})
+          options.merge!(:class_name => workitem.to_s.classify)
+          belongs_to :workitem, options
+        end
+      
+        def audits_transitions
+          puts "#{self.class} audits transitions"
+        end
+                
+        include AASM
         
       end
     end

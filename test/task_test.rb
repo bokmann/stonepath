@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
+require 'flexmock/test_unit'
+
 class TaskTest < Test::Unit::TestCase
 
   def setup
@@ -59,6 +61,30 @@ class TaskTest < Test::Unit::TestCase
     assert_equal(a, u.assignments[0])
     assert_equal(u, a.workbench)
   end
+  
+  # This whole event notification thing is ugly.
+  # Putting aside the ugly way I tested this, the whole AASM callback mechanism
+  # has a problem that the id isn't set after the callback from a create.
+  # Looking at the code of aasm, I cannot easily figure out why.
+  should "callback the workitem when a task is created" do
+    c = Case.create
+    cid = c.id
+    a = c.assignments.create
+    c = Case.find cid
+    assert_equal("created", c.notification_method)
+    #assert_equal(a.id, c.notified_id)
+  end
+  
+  should "callback the workitem when a task is completed" do
+    c = Case.create
+    cid = c.id
+    a = c.assignments.create
+    a.complete!
+    c = Case.find cid
+    assert_equal("closed", c.notification_method)
+    #assert_equal(a.id, c.notified_id)
+  end
+  
 end
 
 

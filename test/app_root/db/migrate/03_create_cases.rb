@@ -5,6 +5,8 @@ class CreateCases < ActiveRecord::Migration
       t.string :name
       t.string :regarding
       t.string :aasm_state
+      t.string :notification_method
+      t.integer :notified_id
       t.timestamps
     end
   end

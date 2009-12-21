@@ -63,5 +63,17 @@ class Case < ActiveRecord::Base
      end
    end
    
+
+   def task_created(task)
+     self.notification_method = "created"
+     self.notified_id = task.id
+     self.save
+   end
    
+   def task_closed(task)
+     self.notification_method = "closed"
+     self.notified_id = task.id
+     self.save
+   end
+
 end

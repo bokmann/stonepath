@@ -15,7 +15,7 @@ module StonePath
       lambda {
         aasm_initial_state :active
         aasm_state :active, :after_enter => :notify_created
-        aasm_state :completed, :before_enter => :timestamp_complete, :after_enter => :notify_closed
+        aasm_state :completed, :after_enter => [:timestamp_complete, :notify_closed]
         aasm_state :expired, :after_enter => :notify_closed
         aasm_state :cancelled, :after_enter => :notify_closed
 

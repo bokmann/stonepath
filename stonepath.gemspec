@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stonepath}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Bock"]
@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
      "script/destroy",
      "script/generate",
      "stonepath.gemspec",
+     "stonepath.pdf",
      "test/acl_test.rb",
      "test/app_root/app/controllers/application_controller.rb",
      "test/app_root/app/models/assignment.rb",

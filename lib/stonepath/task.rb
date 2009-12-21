@@ -31,8 +31,8 @@ module StonePath
           transitions :to => :expired, :from => :active
         end
 
-        named_scope :unassigned, { :conditions => ['assignee_id IS NULL'] }
-        named_scope :assigned, { :conditions => ['assignee_id IS NOT NULL'] }
+        named_scope :unassigned, { :conditions => ['workbench_id IS NULL'] }
+        named_scope :assigned, { :conditions => ['workbench_id IS NOT NULL'] }
         named_scope :active, { :conditions => ['aasm_state in (?)', ['active']] }
         named_scope :completed, { :conditions => ['aasm_state in (?)', ['completed']] }
         named_scope :expired, { :conditions => ['aasm_state in (?)', ['expired']] }

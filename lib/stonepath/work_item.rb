@@ -13,11 +13,6 @@ module StonePath
           belongs_to :owner, options
         end
         
-        # DEPRECATED: used tasked_through instead
-        def subject_of(tasks, options={})
-          has_many tasks, options
-        end
-        
         def tasked_through(tasks, options={})
           has_many tasks, :as => :workitem
         end

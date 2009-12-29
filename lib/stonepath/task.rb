@@ -55,8 +55,10 @@ module StonePath
         # a workitem for the specific kind of task, everything just works.
         belongs_to :workitem, :polymorphic => true
         
-        def audits_transitions
+        def logs_transitions
           puts "#{self.class} audits transitions"
+          # see notes in work_item's version of this method.  This ideally should be an includable
+          # module
         end
                 
         include AASM

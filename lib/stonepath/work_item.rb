@@ -8,6 +8,16 @@ module StonePath
       base.instance_eval do
         include AASM
         
+        def logs_transitions
+          puts "#{self.class} audits transitions"
+          # This method will intercept obj:aasm_event_fired* and will store all events
+          # in a transition table.
+          # We will also need a has_many relationship to those transitions.
+          # in fact, I think I want to call this 'log' instead of 'audit'.
+          #
+          # has_many logged_events :as => :auditable
+        end
+        
         def owned_by(owner, options={})
           options.merge!(:class_name => owner.to_s.classify)
           belongs_to :owner, options

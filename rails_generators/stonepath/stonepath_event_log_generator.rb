@@ -1,4 +1,4 @@
-class StonepathTransitionLogGenerator < Rails::Generator::Base
+class StonepathEventLogGenerator < Rails::Generator::Base
   def manifest
     record do |m|
       task_name = args[0]

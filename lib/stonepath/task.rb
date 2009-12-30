@@ -44,6 +44,7 @@ module StonePath
     
     def self.included(base)
       base.instance_eval do
+        include AASM
       
         # Tasks are now completely polymorphic between workbenches.
         # as long as an activerecord model declares itself as a workbench and declares itself
@@ -55,16 +56,25 @@ module StonePath
         # a workitem for the specific kind of task, everything just works.
         belongs_to :workitem, :polymorphic => true
         
-        def logs_transitions
-          puts "#{self.class} audits transitions"
-          # see notes in work_item's version of this method.  This ideally should be an includable
-          # module
-        end
-                
-        include AASM
-        
       end
     end
+    
+    # I don't think this should really be part of Stonepath, but I'm adding it here as a comment
+    # to communicate some design intent to my fellow teammembers on a project using stonepath.
+    # For the 'timely|imminent|overdue' stuff, at the time the task is created, we would need to
+    # set and calculate the imminent_at and due_at times. These methods would then do what
+    # we need them to do.
+    # def imminent?
+    #   return false if imminent_at.nil?
+    #   imminent_at < Time.now  
+    # end
+    #
+    # we might also want this method, which would be useful in css styling
+    # def timeliness
+    #   return "overdue" if overdue?
+    #   return "imminent" if imminent?
+    #   return "timely"
+    # end
     
     def overdue?
       return false if due_at.nil?

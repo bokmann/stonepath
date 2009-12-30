@@ -56,6 +56,10 @@ module StonePath
         # a workitem for the specific kind of task, everything just works.
         belongs_to :workitem, :polymorphic => true
         
+        #add the ability to log events if the user so specifies
+        require File.expand_path(File.dirname(__FILE__)) + "/event_logging.rb"
+        extend StonePath::EventLogging
+        
       end
     end
     

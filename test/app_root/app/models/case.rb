@@ -3,8 +3,6 @@ class Case < ActiveRecord::Base
   
   stonepath_workitem
   
-  logs_transitions
-  
   aasm_initial_state :pending
 
   aasm_state :pending

@@ -3,6 +3,4 @@ class Assignment < ActiveRecord::Base
   
   stonepath_task
   
-  logs_transitions
-  
 end

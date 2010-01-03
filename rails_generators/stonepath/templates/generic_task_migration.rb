@@ -1,4 +1,4 @@
-class Create<%= args[0].tableize.classify %> < ActiveRecord::Migration
+class Create<%= args[0].tableize.classify.pluralize %> < ActiveRecord::Migration
   def self.up
     create_table :<%= args[0].tableize %> do |t|
       

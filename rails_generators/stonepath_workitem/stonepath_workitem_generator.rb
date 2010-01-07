@@ -69,6 +69,7 @@ class StonepathWorkitemGenerator < Rails::Generator::Base
       unless options[:skip_controller]
         m.directory "app/controllers"
         m.template "controller.rb", "app/controllers/#{plural_name}_controller.rb"
+        m.template "event_controller.rb", "app/controllers/#{singular_name}_events_controller.rb"
         
         m.directory "app/helpers"
         m.template "helper.rb", "app/helpers/#{plural_name}_helper.rb"
@@ -123,6 +124,10 @@ class StonepathWorkitemGenerator < Rails::Generator::Base
   
   def class_name
     name.camelize
+  end
+  
+  def object_id_name
+    (class_name.tableize.singularize + "_id")
   end
   
   def plural_class_name

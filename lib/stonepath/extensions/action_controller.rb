@@ -12,7 +12,7 @@ if Object.const_defined?(:ActionController)
         # that handles events for something declared in the routes file as a
         # stonepath_workitem
         Object.const_set(controller_name, ApplicationController.clone).class_eval do
-          id_name = (class_name.downcase + "_id").to_sym
+          id_name = (class_name.tableize.singularize + "_id").to_sym
           #still need generic http error handling    
           define_method("create") do
             if request.post?

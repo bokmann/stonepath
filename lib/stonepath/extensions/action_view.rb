@@ -6,7 +6,7 @@ if Object.const_defined?(:ActionView)
       module UrlHelper
   
           def link_to_stonepath_event(object, event)
-            path_method = object.class.to_s.downcase + "_event_path"
+            path_method = object.class.to_s.tableize.singularize + "_event_path"
             path = self.send(path_method, object, :id => event.to_s)
             link_to(event.to_s.humanize, path, :method => :post)
           end

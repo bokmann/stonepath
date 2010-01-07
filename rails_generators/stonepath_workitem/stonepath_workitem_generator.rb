@@ -1,4 +1,8 @@
 class StonepathWorkitemGenerator < Rails::Generator::Base
+  
+  load File.expand_path( File.dirname(__FILE__)) + '/../../lib/stonepath/extensions/rails_generator_commands.rb'
+  
+  
   attr_accessor :name, :attributes, :controller_actions
   
   def initialize(runtime_args, runtime_options = {})
@@ -80,7 +84,7 @@ class StonepathWorkitemGenerator < Rails::Generator::Base
           m.template "views/#{view_language}/_form.html.#{view_language}", "app/views/#{plural_name}/_form.html.#{view_language}"
         end
       
-        m.route_resources plural_name
+        m.route_stonepath_workitems plural_name
         
         if rspec?
           m.directory "spec/controllers"

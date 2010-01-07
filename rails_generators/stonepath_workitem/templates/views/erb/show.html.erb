@@ -1,5 +1,3 @@
-<%% title "<%= singular_name.titleize %>" %>
-
 <%- for attribute in attributes -%>
 <p>
   <strong><%= attribute.column.human_name.titleize %>:</strong>
@@ -7,11 +5,14 @@
 </p>
 <%- end -%>
 
+<p>
+  <strong>Current state: </strong><%%= @<%= singular_name %>.aasm_state.humanize %>
+</p>
 
 <p>
-<%%=h @<%= singular_name %>.aasm_events_for_current_state.each do |event| %>
+<%% @<%= singular_name %>.aasm_events_for_current_state.each do |event| %>
   <%%= link_to_stonepath_event(@<%= singular_name %>, event) %> |
-<% end %>
+<%% end %>
 	
 <%- if action? :edit -%>
   <%%= link_to "Edit", edit_<%= singular_name %>_path(@<%= singular_name %>) %> |

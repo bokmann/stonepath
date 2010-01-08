@@ -51,8 +51,6 @@ require "stonepath/config"
 # init.rb chokes on load.  I suspect this is an artificial issue because of the way the
 # embedded test app works.
 load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/activerecordbase.rb"
-load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/action_controller.rb"
-load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/kernel.rb"
 load File.expand_path( File.dirname(__FILE__)) + '/stonepath/extensions/action_view.rb'
 
 

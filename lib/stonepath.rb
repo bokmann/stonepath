@@ -7,9 +7,10 @@ module StonePath
   
     base.instance_eval {
   
-      def stonepath_workitem
+      def stonepath_workitem(&config_block)
         require File.expand_path(File.dirname(__FILE__)) + "/stonepath/work_item.rb"
         include StonePath::WorkItem
+        instance_eval &config_block if config_block
       end
     
       def stonepath_task(&config_block)

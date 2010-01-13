@@ -3,7 +3,7 @@ class Case < ActiveRecord::Base
   
   stonepath_workitem do
   
-    #log_events
+    log_events
   
     aasm_initial_state :pending
 

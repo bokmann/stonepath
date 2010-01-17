@@ -6,6 +6,8 @@ The extraction is underway, and I have to write some generators to have some stu
 I'm going to have a good article on the stomepath modeling methodology shortly.  It is written, it just needs diagrams and an editor's touch.
 
 
+Jan 17th, just demoing to people how git works... these comments need to update soon anyway.
+
 Sunday, August 9th UPDATE:
 Sorry for the delay.  I just gave this talk again at eRubyCon.
 

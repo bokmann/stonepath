@@ -20,27 +20,7 @@ module StonePath
           has_many tasks, :as => :workitem
         end
         
-        def stonepath_acl()
-          require File.expand_path(File.dirname(__FILE__)) + "/acl.rb"
-          cattr_accessor :acl
-          self.acl = StonePath::ACL::Controller.new(self)
-          yield self.acl
-        end
-        
-        def self.define_attribute_methods_with_hook
-          define_attribute_methods_without_hook
-          acl.fix_aliases if defined? self.acl
-        end
-        
-        class << self
-          alias_method "define_attribute_methods_without_hook", "define_attribute_methods"
-          alias_method "define_attribute_methods", "define_attribute_methods_with_hook"
-        end    
       end #base.instance_eval
-
-      def allowed?(method)
-        acl.allowed?(aasm_current_state, current_user, method)
-      end
       
       # modifies to_xml do that it includes all the possible events from this state.
       # useful when you are using WorkItems as resources with ActiveResource

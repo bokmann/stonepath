@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include StonePath
-  
+  include SentientUser
+    
   stonepath_workowner
   workowner_for :case
   

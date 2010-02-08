@@ -15,6 +15,8 @@ begin
     gemspec.authors = ["David Bock"]
     gemspec.add_dependency('activerecord','>= 2.0.0')
     gemspec.add_dependency('aasm','>= 2.1.3')
+    gemspec.add_dependency('sentient_user','>= 0.1.0')
+    
   end
   
     Jeweler::GemcutterTasks.new

@@ -51,7 +51,6 @@ require "stonepath/config"
 # I want to move these into init.rb, but for some reason, the way rails processes the
 # init.rb chokes on load.  I suspect this is an artificial issue because of the way the
 # embedded test app works.
-load File.expand_path( File.dirname(__FILE__)) + "/stonepath/extensions/activerecordbase.rb"
 load File.expand_path( File.dirname(__FILE__)) + '/stonepath/extensions/action_view.rb'
 
 

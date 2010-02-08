@@ -1,44 +1,20 @@
 = stonepath
 
-Wednesday, August 25th UPDATE:
-The extraction is underway, and I have to write some generators to have some stuff make sense outside the scope of a real application.
+State-based workflow for rails.
 
-I'm going to have a good article on the stomepath modeling methodology shortly.  It is written, it just needs diagrams and an editor's touch.
+UPDATE: The StonePath acl is being pulled out into a separate project called StoneWall.
+Update #2: Rather than reinvent a common wheel, StonePath now relies on the sentient_user gem.
 
-
-Jan 17th, just demoing to people how git works... these comments need to update soon anyway.
-
-Sunday, August 9th UPDATE:
-Sorry for the delay.  I just gave this talk again at eRubyCon.
-
-Some of these stateful workflow ideas are being used in a project for the
-DC Public School System, but the data store there is unconventional (a
-QuickBase database online), so the work being done on StonePath has taken a
-back seat.  I expect this project to be live again shortly, starting simply
-with some wiki entries explaining the same concepts that I outline in the
-presentation (including WorkItem, Ownership, Assignment, Task, Permissions, and
-organizational modeling with groups and roles).
-
----
-
-This is a Stateful Workflow gem that is currently being pulled out of a 
-real-world client project.  I'm creating the repository before RailsConf 2009
-so interested people that attend my talk can watch and contribute.
-
-I'm also asking you to keep me honest - this extraction is real, but is likely
-to take a back seat to real billable client time.  If I know there is interest
-(that is, if I see followers and if they nag me), this project is likely to get
-time over others.
+For more information, check out the stonepath.pdf in this same directory.  Stonepath is in real use and under active development, so improved docs will be arriving in this location shortly.
 
 
-
-gem install bokmann-stonepath
+gem install stonepath
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2009 FIXME full name
+Copyright (c) 2009 David Bock
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

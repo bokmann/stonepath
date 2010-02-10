@@ -10,6 +10,7 @@ module StonePath
     def self.included(base)
       base.instance_eval do
         def workowner_for(work_items, options={})
+          options.merge!(:foreign_key => :owner_id)
           has_many work_items, options
         end
       end

@@ -5,7 +5,7 @@ class <%= args[0].classify %> < ActiveRecord::Base
   
   #logs_transitions  # uncomment this if you generate the event log.
   
-  attr_accessible <%= attributes.map { |a| ":#{a.name}" }.join(", ") %>
+  attr_accessible :workitem, :workbench, <%= attributes.map { |a| ":#{a.name}" }.join(", ") %>
   
   # you might think 'overdue' should be a state, but no, part of the stonepath
   # methodology is that states should be as free of time definition as possible.

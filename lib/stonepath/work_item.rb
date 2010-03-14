@@ -17,7 +17,8 @@ module StonePath
         end
         
         def tasked_through(tasks, options={})
-          has_many tasks, :as => :workitem
+          options.merge!(:as => :workitem)
+          has_many tasks, options
         end
         
       end #base.instance_eval

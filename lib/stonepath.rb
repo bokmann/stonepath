@@ -24,16 +24,6 @@ module StonePath
         require File.expand_path(File.dirname(__FILE__)) + "/stonepath/work_bench.rb"
         include StonePath::WorkBench
       end
-    
-      def stonepath_group
-        require File.expand_path(File.dirname(__FILE__)) + "/stonepath/group.rb"
-        include StonePath::Group
-      end
-    
-      def stonepath_role
-        require File.expand_path(File.dirname(__FILE__)) + "/stonepath/role.rb"
-        include StonePath::Role
-      end
       
       def stonepath_workowner
         require File.expand_path(File.dirname(__FILE__)) + "/stonepath/work_owner.rb"

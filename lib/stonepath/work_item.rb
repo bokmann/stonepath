@@ -11,6 +11,9 @@ module StonePath
         require File.expand_path(File.dirname(__FILE__)) + "/event_logging.rb"
         extend StonePath::EventLogging
         
+        require File.expand_path(File.dirname(__FILE__)) + "/dot.rb"
+        extend StonePath::Dot
+        
         def owned_by(owner, options={})
           options.merge!(:class_name => owner.to_s.classify)
           belongs_to :owner, options

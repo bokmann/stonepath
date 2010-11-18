@@ -25,7 +25,15 @@ class TaskTest < Test::Unit::TestCase
     a.complete!
     assert_equal("completed", a.aasm_state)
   end
-  
+
+  should "see a completed_at date when an assignment is completed" do
+    c = Case.create
+    a = c.assignments.create
+    a.complete!
+    a = a.reload
+    assert_not_nil(a.completed_at)
+  end
+
   should "be able to cancel an assignment" do
     c = Case.create
     a = c.assignments.create

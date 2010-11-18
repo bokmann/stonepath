@@ -15,7 +15,15 @@ module StonePath
       lambda {
         aasm_initial_state :active
         aasm_state :active, :after_enter => :notify_created
-        aasm_state :completed, :after_enter => [:timestamp_complete, :notify_closed]
+        aasm_state :completed, :enter => :timestamp_complete, :after_enter => :notify_closed
+        # was:
+        #aasm_state :completed, :after_enter => [:timestamp_complete, :notify_closed]
+        # but, from investigations into AASM,
+        # persist is done after :enter but before :after_exit, etc
+        # so fields changed in :after_enter will result in a dirty object that
+        # never gets saved to the DB
+        # WD-rpw / Ashish Tonse 11-16-2010
+
         aasm_state :expired, :after_enter => :notify_closed
         aasm_state :cancelled, :after_enter => :notify_closed
 

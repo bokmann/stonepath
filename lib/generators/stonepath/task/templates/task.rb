@@ -1,4 +1,4 @@
-class <%= args[0].classify %> < ActiveRecord::Base
+class <%= class_name %> < ActiveRecord::Base
   include StonePath
   
   stonepath_task

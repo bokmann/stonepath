@@ -15,7 +15,7 @@ module Stonepath
       end
       
       def create_migration
-        migration_template 'migration.rb', "db/migrate/create_#{file_name.pluralize}_table.rb"
+        migration_template 'migration.rb', "db/migrate/create_#{file_name.pluralize}.rb"
       end
       
       protected  

@@ -1,6 +1,6 @@
-class Create<%= plural_class_name %> < ActiveRecord::Migration
+class Create<%= file_name.tableize.classify.pluralize %> < ActiveRecord::Migration
   def self.up
-    create_table :<%= plural_name %> do |t|
+    create_table :<%= file_name.tableize %> do |t|
       # These are the attributes of a workitem
       t.string :aasm_state
       t.integer :owner_id
@@ -19,6 +19,6 @@ class Create<%= plural_class_name %> < ActiveRecord::Migration
   end
   
   def self.down
-    drop_table :<%= plural_name %>
+    drop_table :<%= file_name.tableize %>
   end
 end

@@ -1,6 +1,6 @@
-class Create<%= args[0].tableize.classify.pluralize %> < ActiveRecord::Migration
+class Create<%= file_name.tableize.classify.pluralize %> < ActiveRecord::Migration
   def self.up
-    create_table :<%= args[0].tableize %> do |t|
+    create_table :<%= file_name.tableize %> do |t|
       
       # don't change these unless you want to get deep into meta in the
       # stonepath gem.
@@ -13,7 +13,7 @@ class Create<%= args[0].tableize.classify.pluralize %> < ActiveRecord::Migration
       t.timestamps
       
       # This "urgent at' concept was useful in one of the domains StonePath
-      # was written/extracted from.  The idea is thatm while something is 'due'
+      # was written/extracted from.  The idea is that while something is 'due'
       # at a specific time, it might become urgent shortly before it is due.
       # In that domain, we color-coded tasks as green (due date is far out)
       # yellow (urgent timestap has passed), and red (overdue - due date  
@@ -31,6 +31,6 @@ class Create<%= args[0].tableize.classify.pluralize %> < ActiveRecord::Migration
   end
 
   def self.down    
-    drop_table :<%= args[0].tableize %>
+    drop_table :<%= file_name.tableize %>
   end
 end

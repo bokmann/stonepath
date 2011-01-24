@@ -42,6 +42,7 @@ Gem::Specification.new do |s|
     "lib/stonepath/event_logging.rb",
     "lib/stonepath/extensions/action_view.rb",
     "lib/stonepath/extensions/rails_generator_commands.rb",
+    "lib/stonepath/railtie.rb",
     "lib/stonepath/task.rb",
     "lib/stonepath/work_bench.rb",
     "lib/stonepath/work_item.rb",

@@ -34,7 +34,6 @@ module Stonepath
         end
       end
       
-      
     end
   end
 end

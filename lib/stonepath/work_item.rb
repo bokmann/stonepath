@@ -41,7 +41,9 @@ module StonePath
       end
       
       base.instance_eval do
-        alias_method_chain :to_xml, :events      
+        unless method_defined? :to_xml_without_events
+          alias_method_chain :to_xml, :events
+        end
       end
       
     end #self.included

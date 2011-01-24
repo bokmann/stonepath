@@ -3,7 +3,7 @@ class <%= class_name %> < ActiveRecord::Base
   
   stonepath_task
   
-  #logs_transitions  # uncomment this if you generate the event log.
+  #log_events  # uncomment this if you generate the event log.
   
   attr_accessible :workitem, :workbench, <%= attributes.map { |a| ":#{a.name}" }.join(", ") %>
   

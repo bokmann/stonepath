@@ -13,10 +13,9 @@ begin
     gemspec.homepage = "http://github.com/bokmann/stonepath"
     gemspec.description = "Stateful workflow modeling for Rails"
     gemspec.authors = ["David Bock"]
-    gemspec.add_dependency('activerecord','>= 2.0.0')
-    gemspec.add_dependency('aasm','>= 2.1.3')
-    gemspec.add_dependency('sentient_user','>= 0.1.0')
-    
+    gemspec.add_dependency('activerecord','>= 3.0.0')
+    gemspec.add_dependency('aasm','>= 2.2.0')
+    gemspec.add_dependency('sentient_user','>= 0.3.2')
   end
   
     Jeweler::GemcutterTasks.new

@@ -2,13 +2,11 @@
 
 State-based workflow for rails.
 
-UPDATE: The StonePath acl is being pulled out into a separate project called StoneWall.
-Update #2: Rather than reinvent a common wheel, StonePath now relies on the sentient_user gem.
+As of verion 0.5.0, this supports Rails3.  The only piece that needed to be upgrded was the generators, and with the new capabilities in rails3 generators, there will be a few new ones soon.
 
-For more information, check out the stonepath.pdf in this same directory.  Stonepath is in real use and under active development, so improved docs will be arriving in this location shortly.
+The testing harness in this app is a Rails 2.3.8 app.  Upgrading these tests is going to be painful, but will happen over the next few weeks.
 
 
-gem install stonepath
 
 == LICENSE:
 

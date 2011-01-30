@@ -18,8 +18,7 @@ module StonePath
       def stonepath_task(&config_block)
         require File.expand_path(File.dirname(__FILE__)) + "/stonepath/task.rb"
         include StonePath::SPTask
-        config_block ||= StonePath::SPTask.default_config_block
-        instance_eval &config_block
+        instance_eval &config_block if config_block
       end
     
       def stonepath_workbench

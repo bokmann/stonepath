@@ -4,52 +4,7 @@
 
 module StonePath
   module SPTask
-    
-    # This will move from here shortly, into another class/module for containing things like this.
-    # This is the workflow definition for a default task.  This is defined this way so that users
-    # can provide their own task workflow definition as a block to the stonepath_task declaration.
-    # This lanbda is passed in if the user doesn't provide anything.
-    # It is possible that we will identify other useful options and want to provide them as config
-    # blocks in the StonePath gem.
-    def self.default_config_block
-      lambda {
-        aasm_initial_state :active
-        aasm_state :active, :after_enter => :notify_created
-        aasm_state :completed, :enter => :timestamp_complete, :after_enter => :notify_closed
-        # was:
-        #aasm_state :completed, :after_enter => [:timestamp_complete, :notify_closed]
-        # but, from investigations into AASM,
-        # persist is done after :enter but before :after_exit, etc
-        # so fields changed in :after_enter will result in a dirty object that
-        # never gets saved to the DB
-        # WD-rpw / Ashish Tonse 11-16-2010
-
-        aasm_state :expired, :after_enter => :notify_closed
-        aasm_state :cancelled, :after_enter => :notify_closed
-
-        aasm_event :complete do
-          transitions :to => :completed, :from => :active
-        end
-
-        aasm_event :cancel do
-          transitions :to => :cancelled, :from => [:active, :completed]
-        end
-
-        aasm_event :expire do
-          transitions :to => :expired, :from => :active
-        end
-
-        named_scope :unassigned, { :conditions => ['workbench_id IS NULL'] }
-        named_scope :assigned, { :conditions => ['workbench_id IS NOT NULL'] }
-        named_scope :active, { :conditions => ['aasm_state in (?)', ['active']] }
-        named_scope :completed, { :conditions => ['aasm_state in (?)', ['completed']] }
-        named_scope :expired, { :conditions => ['aasm_state in (?)', ['expired']] }
-        named_scope :cancelled, { :conditions => ['aasm_state in (?)', ['cancelled']] }
-        named_scope :overdue, lambda { { :conditions => ['aasm_state in (?) AND due_at < ?',  ['active'], Time.now] } }
-      }
-    end
-    
-    
+      
     def self.included(base)
       base.instance_eval do
         include AASM

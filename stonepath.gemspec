@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{stonepath}
-  s.version = "0.4.2"
+  s.version = "0.6.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["David Bock"]
@@ -22,12 +22,27 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "lib/generators/stonepath.rb",
+    "lib/generators/stonepath/event_log/event_log_generator.rb",
+    "lib/generators/stonepath/event_log/templates/create_event_records.rb",
+    "lib/generators/stonepath/event_log/templates/event_record.rb",
+    "lib/generators/stonepath/events_scaffold/events_scaffold_generator.rb",
+    "lib/generators/stonepath/task/USAGE",
+    "lib/generators/stonepath/task/task_generator.rb",
+    "lib/generators/stonepath/task/templates/migration.rb",
+    "lib/generators/stonepath/task/templates/task.rb",
+    "lib/generators/stonepath/workitem_model/templates/migration.rb",
+    "lib/generators/stonepath/workitem_model/templates/model.rb",
+    "lib/generators/stonepath/workitem_model/workitem_model_generator.rb",
+    "lib/generators/stonepath/workitem_scaffold/templates/model.rb",
+    "lib/generators/stonepath/workitem_scaffold/workitem_scaffold_generator.rb",
     "lib/stonepath.rb",
     "lib/stonepath/config.rb",
     "lib/stonepath/dot.rb",
     "lib/stonepath/event_logging.rb",
     "lib/stonepath/extensions/action_view.rb",
     "lib/stonepath/extensions/rails_generator_commands.rb",
+    "lib/stonepath/railtie.rb",
     "lib/stonepath/task.rb",
     "lib/stonepath/work_bench.rb",
     "lib/stonepath/work_item.rb",
@@ -37,6 +52,7 @@ Gem::Specification.new do |s|
     "script/console",
     "script/destroy",
     "script/generate",
+    "stonepath.gemspec",
     "stonepath.pdf",
     "test/app_root/app/controllers/application_controller.rb",
     "test/app_root/app/models/assignment.rb",
@@ -107,18 +123,18 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<activerecord>, [">= 2.0.0"])
-      s.add_runtime_dependency(%q<aasm>, [">= 2.1.3"])
-      s.add_runtime_dependency(%q<sentient_user>, [">= 0.1.0"])
+      s.add_runtime_dependency(%q<activerecord>, [">= 3.0.0"])
+      s.add_runtime_dependency(%q<aasm>, [">= 2.2.0"])
+      s.add_runtime_dependency(%q<sentient_user>, [">= 0.3.2"])
     else
-      s.add_dependency(%q<activerecord>, [">= 2.0.0"])
-      s.add_dependency(%q<aasm>, [">= 2.1.3"])
-      s.add_dependency(%q<sentient_user>, [">= 0.1.0"])
+      s.add_dependency(%q<activerecord>, [">= 3.0.0"])
+      s.add_dependency(%q<aasm>, [">= 2.2.0"])
+      s.add_dependency(%q<sentient_user>, [">= 0.3.2"])
     end
   else
-    s.add_dependency(%q<activerecord>, [">= 2.0.0"])
-    s.add_dependency(%q<aasm>, [">= 2.1.3"])
-    s.add_dependency(%q<sentient_user>, [">= 0.1.0"])
+    s.add_dependency(%q<activerecord>, [">= 3.0.0"])
+    s.add_dependency(%q<aasm>, [">= 2.2.0"])
+    s.add_dependency(%q<sentient_user>, [">= 0.3.2"])
   end
 end
 

@@ -29,33 +29,7 @@ module StonePath
       end
     end
     
-    # I don't think this should really be part of Stonepath, but I'm adding it here as a comment
-    # to communicate some design intent to my fellow teammembers on a project using stonepath.
-    # For the 'timely|imminent|overdue' stuff, at the time the task is created, we would need to
-    # set and calculate the imminent_at and due_at times. These methods would then do what
-    # we need them to do.
-    # def imminent?
-    #   return false if imminent_at.nil?
-    #   imminent_at < Time.now  
-    # end
-    #
-    # we might also want this method, which would be useful in css styling
-    # def timeliness
-    #   return "overdue" if overdue?
-    #   return "imminent" if imminent?
-    #   return "timely"
-    # end
-    
-    def overdue?
-      return false if due_at.nil?
-      due_at < Time.now  
-    end
-    
     private
-    
-    def timestamp_complete
-      self.completed_at = Time.now
-    end
     
     def notify_created
       if workitem.respond_to?(:task_created)

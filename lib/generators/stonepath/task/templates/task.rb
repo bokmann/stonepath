@@ -59,7 +59,13 @@ class <%= class_name %> < ActiveRecord::Base
   #
   # so the state would be 'in process', even though it is 'overdue'.
   def overdue?
-    (Time.now > due_at) && !self.completed?
+    (Time.now > due_at) && self.active?
+  end
+  
+  private
+  
+  def timestamp_complete
+    self.completed_at = Time.now
   end
   
 end

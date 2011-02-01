@@ -47,7 +47,7 @@ class <%= class_name %> < ActiveRecord::Base
   # You can log events on Tasks by running the event log generator and uncommenting this line.
   #log_events
   
-  attr_accessible :workitem, :workbench <% unless attributes.emoty? %>, <% end %> <%= attributes.map { |a| ":#{a.name}" }.join(", ") %>
+  attr_accessible :workitem, :workbench <% unless attributes.empty? %>, <% end %> <%= attributes.map { |a| ":#{a.name}" }.join(", ") %>
   
   # you might think 'overdue' should be a state, but no, part of the stonepath
   # methodology is that states should be as free of time definition as possible.

@@ -1,0 +1,2 @@
+require 'aasm'
+require 'stonepath'

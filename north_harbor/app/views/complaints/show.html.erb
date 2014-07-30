@@ -1,0 +1,49 @@
+<p>
+  <b>Aasm state:</b>
+  <%=h @complaint.aasm_state %>
+</p>
+
+<p>
+  <b>Owner:</b>
+  <%=h @complaint.owner.andand.username %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%=h @complaint.category %>
+</p>
+
+<p>
+  <b>Complaint type:</b>
+  <%=h @complaint.complaint_type %>
+</p>
+
+<p>
+  <b>Store:</b>
+  <%=h @complaint.store.andand.location %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @complaint.description %>
+</p>
+
+<p>
+  <b>Customer name:</b>
+  <%=h @complaint.customer_name %>
+</p>
+
+<%= render :partial => "follow_up_actions/actions",
+           :object => @complaint.follow_up_actions %>
+
+<%= link_to 'new task', new_complaint_follow_up_action_path(@complaint) %><br/>
+
+<% if current_user == @complaint.owner || @complaint.owner.nil? || @complaint.in_creation? %>
+	<%= render :partial => "stonepath/events_panel",
+	           :locals => { :workitem => @complaint,
+		       :parentage => [@complaint]} %>
+
+<% end %>
+
+<%= link_to 'Edit', edit_complaint_path(@complaint) %> |
+<%= link_to 'Back', complaints_path %>

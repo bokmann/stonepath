@@ -1,0 +1,15 @@
+
+<table border="1"> 
+<tr>
+  <th>ID#</th> <th>User</th> <th>Instructions</th> <th>Due Date</th> <th>Status</th>
+</tr>
+<% actions.each do |action| %>
+<tr>
+<td><%= link_to action.id, complaint_follow_up_action_path(action.workitem, action) %> </td>
+<td><%= action.workbench.username %></td>
+<td><%= action.handling_instructions %></td>
+<td><%= action.due_at %></td>
+<td><%= action.aasm_state %></td>
+</tr>
+<% end %>
+</table>

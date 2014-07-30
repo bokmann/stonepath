@@ -1,0 +1,129 @@
+I have to admit, this app, as far as real solutions go, has some problems:
+ - There is too much logic in the views for my taste.  Of course, that is what the StoneWall gem would address, and this isn't about stonewall (yet).
+ - I don't explain some of the tradeoffs in the modeling made.  I'll explain it in a class based on this, but why, for example, don't I have tasks for data entry and verification?  The short story - when the workflow is linear and the work to be done is done by the owner, it is acceptable to reduce the workflow down to 'linear, done by owner', and not worry about tasks.
+ - It needs to have tests.  In the context that I change this app constantly to prove different points, the tests would slow that down.  A future version based on real coursework would have tests though.
+
+
+
+
+
+This is an example app using StonePath.
+
+It isn't perfect yet, and the scope has diverged slightly since I wrote these requirements, but it is good enough for now, and it shows how to do some useful stuff with Stonepath.  I'll be adding more to this very shortly.
+
+This app shows:
+
+- simple stonepath workflow
+- restful conventions
+- highjacking the ActiveRecord errors hash.
+
+----
+North Harbor Coffee company is a small chain of coffee shops in the Pacific Northwest of the United States.  They have approximately 20 stores, and they are opening a few new ones every quarter.
+
+Todd Saboe, the Director of Marketing for NHCC has decided they need a consolidated company-wide system for handling customer complaints.  These complaints might be left in a "complaints or suggestions" box in each store, they might be mailed (or emailed) to people at the company, they might come in via a phone call or fax, or might even be the result of a customer survey.  Where they come from isn't important, as long as the company has a consolidated way to handle (and report on) all complaints.
+
+Complaints can be categorized as follows:
+1) Complaint about service
+	"I waited forever for my drink, the barista was rude, and my coffee was wrong"
+2) Complaint about quality
+	"Your beans are burnt and the coffee is bitter"
+3) Complaint about details of a specific location
+	"The parking here is horrible and the drive-through blocks the main traffic"
+4) Complaint about the company overall
+	"You guys exploit the peasant farmers of Guatemala"
+
+And they are typed as follows:
+1) Out of Scope - We might be exploiting peasant farmers, but that isn't something this system is meant to address.  We might send those up the chain to management, but this system is about managing store quality and customer experience.
+2) Minor complaint - the store manager or other appropriate parties should be notified about the complaint, but no followup is necessary.
+3) Intermediate complaint - We will assign some action that the store manager should follow up on based on this complaint.  The store manager should take action and record it in the system.
+4) Major complaint - This category is referred to the corporate attorney and the store manager.  Notes about this complaint are tracked in this system.
+
+When a complaint is about a particular store, that store's Identification number will be entered along with the complaint.  This number is displayed in the store and printed out on every receipt.
+
+The complaint will have a description, generally the text of the complaint as provided by the complainer.
+
+Users of the system can attach comments to the complaint.
+
+If complaints result in any follow-up actions necessary by the store, those will be tracked along with the complaint.  Actions have a description, comments, and a due date.  If a store has an issue with any of these actions, there is an 'appeals' process where they can make an alternate suggestion for how to resolve the issue and kick it back to the "Customer Satisfaction Manager".
+
+
+The workflow associated with a complaint is straightforward, but varies by the type.
+
+1) The complaint is entered into the system.
+	Various different people enter the complaints.  For instance, all of the complaints stuffed into the 'suggestions' boxes are sent to a third party company that does data entry.  We may have the help desk answering phones enter complaints, and in the future, we may have a 'complaints and suggestions' box on our corporate website.
+	
+2) There are several employees with the title of "Customer Satisfaction Manager".  They will receive the complaints, categorize and rate them as above.  Depending on the rating, several different workflow paths will occur:
+
+
+Out of Scope Path:
+1) Out of Scope complaints stop here, and are pulled into one great big report every quarter.
+
+Minor Complaint Path:
+1) Minor complaints are sent to the store/store manager.  The store manager can then mark them as 'addressed' or 'ignored', as they see fit.  As always, they can attach any comments they want to this complaint.
+
+Intermediate Complaint Path:
+1) Intermediate complaints are sent to a "Customer Satisfaction Specialist" to handle as per their job.  The store manager is also notified the complaint exists and can add comments to it.  The Customer Satisfaction Specialist is free to do whatever is necessary to investigate the complaint, including talk to the store manager, employees, or even the customer if contact info is provided.  The Customer resolution specialist can create one or more "Follow-up actions" for the store manager.
+
+2) The store manager looks at each follow-up action and is responsible for implementing the action by the due date provided.  (These may come up during the store's annual inspection, but that is outside the scope of this process).  The store manager can also 'kick back' the action if they disagree. The kickback can go to either the Customer Resolution Specialist that created the follow-up action, or it can go to their manager, at the discretion of the store manager.
+
+3) If kicked back, the action is either cancelled, or sent back to the manager as is, or potentially modified.
+
+
+Major Complaint Path:
+1) Major complaints are assigned to the corporate attorney and the store manager is notified.  At this point it is marked "Under Investigation", and everyone is free to add comments to the complaint.  
+
+2) At some point the lawyer marks this complaint as "addressed", and is free to add whatever comments are necessary. The system doesn't track any other details of this workflow.
+
+
+Assignment:  What are the roles identified above?
+
+Roles of the system:
+Data Entry
+Store/Store Manager
+Customer Satisfaction Manager
+Customer Satisfaction Specialist
+Corporate Attorney
+
+What are the classes identified, and what StonePath Entities are they?
+
+Classes in the domain:
+User  (workbench)
+Role  (workbench)
+Complaint (workitem, commentable))
+Comment (just a polymorphic activerecord class)
+Follow-up Actions (workitem, commentable, maybe just a custom task)
+Tasks (task)
+Store (workbench?)
+
+
+What is the workflow of the Complaint workitem?
+
+complaint workflow:
+
+In Creation  ->  CSM Review  -> Out of Scope
+                             -> Store Manager Review  -> Addressed
+                                                      -> Ignored
+                             -> CSS Review -> Pending Action -> Addressed
+                             -> Attorney Review -> Addressed
+
+What is the workflow of the Action Workitem?  Could this simply be modeled as a custom task?
+Action Workflow:
+  Defining -> Pending -> Completed
+                      -> Kicked Back -> &Pending
+                      -> Cancelled
+
+
+What about 'owner'?  If most actions in the system are taken care of by tasking, then is the owner even necessary?
+
+Creation - owner is the data entry clerk.
+CSM review - can stay data entry
+Out of Scope - no owner
+Store Manager Review - Store Owner
+CSS Review - CSS
+Attorney Purvue - Attorney
+Addressed/Ignored - no owner
+
+
+or, maybe it always stays the data entry clerk
+
+no right answer - depends o how you want to use it in the domain

@@ -1,0 +1,26 @@
+<p>
+  <b>Location:</b>
+  <%=h @store.location %>
+</p>
+
+<p>
+  <b>Manager:</b>
+  <%=h @store.manager.andand.username %>
+</p>
+
+<h3> Complaints </h3>
+<table border="1"> 
+<tr>
+  <th>ID#</th> <th>Status</th> <th># of Actions</th>
+</tr>
+<% @store.complaints.each do |complaint| %>
+<tr>
+<td><%= link_to complaint.id, complaint_path(complaint) %> </td>
+<td><%= complaint.aasm_state %></td>
+<td><%= complaint.follow_up_actions.count %></td>
+</tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_store_path(@store) %> |
+<%= link_to 'Back', stores_path %>

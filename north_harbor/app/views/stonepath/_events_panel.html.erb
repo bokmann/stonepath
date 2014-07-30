@@ -1,0 +1,17 @@
+<div id="events_panel">
+<ul>
+  <% workitem.aasm_events_for_current_state.each do |event| %>
+    <% if workitem.class.aasm_events[event].respond_to?(:required_data) %>
+  	  <li><%= link_to event.to_s,
+	  			      new_polymorphic_path([parentage, :event].flatten,
+		              {:name => event.to_s}) %> </li>
+    <% else %>
+      <li><%= link_to event.to_s,
+                      polymorphic_path([parentage, :events].flatten,
+                      {:name => event.to_s}),
+                      :method => :post %> </li> 
+    <% end %>	
+  <% end %>
+</ul>
+
+</div>

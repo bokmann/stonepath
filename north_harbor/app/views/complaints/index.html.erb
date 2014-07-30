@@ -1,0 +1,32 @@
+<h1>Listing complaints</h1>
+
+<table>
+  <tr>
+    <th>Aasm state</th>
+    <th>Owner</th>
+    <th>Category</th>
+    <th>Complaint type</th>
+    <th>Store</th>
+    <th>Description</th>
+    <th>Customer name</th>
+  </tr>
+
+<% @complaints.each do |complaint| %>
+  <tr>
+    <td><%=h complaint.aasm_state %></td>
+    <td><%=h complaint.owner.andand.username %></td>
+    <td><%=h complaint.category %></td>
+    <td><%=h complaint.complaint_type %></td>
+    <td><%=h complaint.store.andand.location %></td>
+    <td><%=h complaint.description %></td>
+    <td><%=h complaint.customer_name %></td>
+    <td><%= link_to 'Show', complaint %></td>
+    <td><%= link_to 'Edit', edit_complaint_path(complaint) %></td>
+    <td><%= link_to 'Destroy', complaint, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New complaint', new_complaint_path %>

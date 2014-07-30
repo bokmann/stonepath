@@ -1,0 +1,8 @@
+<% form_tag(polymorphic_path([@parentage, :events].flatten, {:name => @event.to_s})) do -%>
+  <% @required_data.andand.each do |name, type| %>
+    <%= label_tag name.to_s %>
+    <%= text_area_tag name.to_s %>
+  <% end %> 
+  <%= submit_tag @event.to_s %>
+<% end %>
+

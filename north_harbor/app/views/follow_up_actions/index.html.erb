@@ -1,0 +1,17 @@
+<h1>Listing Follow-up Actions</h1>
+
+
+<% @follow_up_actions.each do |follow_up_action| %>
+<h3><%= follow_up_action.id %></h3>
+<p> <%= follow_up_action.workbench.andand.username %></p>
+<p> <%= follow_up_action.handling_instructions %> </p>
+<ul>
+    <li><%= link_to 'Show', complaint_follow_up_action_path(@complaint, follow_up_action) %></li>
+    <li><%= link_to 'Edit', edit_complaint_follow_up_action_path(@complaint, follow_up_action) %></li>
+    <li><%= link_to 'Destroy', complaint_follow_up_action_path(@complaint, follow_up_action), :confirm => 'Are you sure?', :method => :delete %></li>
+</ul>
+<% end %>
+
+<br />
+
+<%= link_to 'New follow_up_action', new_complaint_follow_up_action_path(@complaint) %>

@@ -1,0 +1,19 @@
+
+<%= link_to "all complaints", complaints_path %><br/>
+<%= link_to "all stores", stores_path %><br/><br/>
+
+<% if current_user.complaints.open.size > 0 %>
+	<h4>Your Current Complaints: (<%= current_user.complaints.open.size %>)</h4>
+	<% current_user.complaints.open.each do |complaint| %>
+	  <p> <%= link_to complaint.id, complaint_path(complaint) %></p>
+	<% end %>
+<% end %>
+
+
+<% if current_user.follow_up_actions.active.size > 0 %>
+<h4>Follow-up Actions assigned to you:</h4><br/>
+  <%= render :partial => "follow_up_actions/actions",
+             :object => current_user.follow_up_actions.active %>
+<% end %>
+
+

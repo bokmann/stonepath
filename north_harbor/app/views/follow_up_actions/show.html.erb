@@ -1,0 +1,11 @@
+<h1>Follow-up Action #<%= @follow_up_action.id -%></h1>
+
+  <p> Assigned to: <%= @follow_up_action.workbench.username %> </p>
+  <p> Handling Instructions: <%= @follow_up_action.handling_instructions %> </p>
+  <p> Due At: <%= @follow_up_action.due_at %></p>
+
+<%= render :partial => "stonepath/events_panel",
+           :locals => { :workitem => @follow_up_action,
+	       :parentage => [@complaint, @follow_up_action]} %>
+	
+<%= link_to 'Back', complaint_path(@complaint) %>

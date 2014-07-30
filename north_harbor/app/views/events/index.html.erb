@@ -1,0 +1,9 @@
+<ul>
+  <% @events.each do |event| %>
+    <li>
+	  <%= link_to event.to_s,
+	              polymorphic_path([@parentage, :events].flatten, {:name => event.to_s}),
+	              :method => :post %>
+	</li>
+  <% end %>
+</ul>

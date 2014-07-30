@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  aasm_state: MyString
+  owner_id: 1
+  category: MyString
+  complaint_type: MyString
+  store_id: 1
+  description: MyText
+  customer_name: MyString
+
+two:
+  aasm_state: MyString
+  owner_id: 1
+  category: MyString
+  complaint_type: MyString
+  store_id: 1
+  description: MyText
+  customer_name: MyString

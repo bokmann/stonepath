@@ -1,0 +1,19 @@
+<h1>Editing complaint</h1>
+
+<% semantic_form_for(@complaint) do |f| %>
+
+  <%= f.error_messages %>
+
+  <% f.inputs do %>
+    <%= f.input :owner, :collection => @managers %>
+
+    <%= f.input :category, :as => :select, :collection => Complaint::Categories %>
+    <%= f.input :store %>
+    <%= f.input :description %>
+    <%= f.input :customer_name %>
+  <% end %>
+    <%= f.buttons %>
+<% end %>
+
+<%= link_to 'Show', @complaint %> |
+<%= link_to 'Back', complaints_path %>
